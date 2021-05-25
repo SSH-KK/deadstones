@@ -1,11 +1,11 @@
 {
-  "name": "@sabaki/deadstones",
+  "name": "deadstones",
   "version": "2.1.2",
   "description": "Simple Monte Carlo functions to determine dead stones on a Go board.",
   "main": "./js/main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SabakiHQ/deadstones.git"
+    "url": "git+https://github.com/SSH-KK/deadstones.git"
   },
   "keywords": [
     "go",
@@ -19,9 +19,9 @@
   "author": "Yichuan Shen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SabakiHQ/deadstones/issues"
+    "url": "https://github.com/SSH-KK/deadstones/issues"
   },
-  "homepage": "https://github.com/SabakiHQ/deadstones",
+  "homepage": "https://github.com/SSH-KK/deadstones",
   "scripts": {
     "build": "wasm-pack build --out-dir ./wasm --target nodejs",
     "snip": "wasm-snip --snip-rust-fmt-code --snip-rust-panicking-code ./wasm/deadstones_bg.wasm -o ./wasm/deadstones_bg.wasm",

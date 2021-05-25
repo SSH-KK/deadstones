@@ -1,49 +1,27 @@
-# @sabaki/deadstones [![Build Status](https://travis-ci.org/SabakiHQ/deadstones.svg?branch=master)](https://travis-ci.org/SabakiHQ/deadstones)
-
 Simple Monte Carlo algorithm to determine dead stones on a Go board.
-
-## Installation
-
-Use npm to install:
-
-~~~
-$ npm install @sabaki/deadstones
-~~~
-
-To use this module, require it as follows:
-
-~~~js
-const deadstones = require('@sabaki/deadstones')
-~~~
-
-This module supports fetching the WASM file via `fetch` on the web if no node environment is found. Use a bundler like webpack and call the following method right after `import` or `require`:
-
-~~~js
-deadstones.useFetch('./path/to/deadstones_bg.wasm')
-~~~
 
 ## Building
 
 Make sure you have the Rust toolchain installed via `rustup`. This project uses the native WASM target which you can acquire with:
 
-~~~
+```
 $ rustup target add wasm32-unknown-unknown
-~~~
+```
 
 Make sure you have [`wasm-pack`](https://rustwasm.github.io/wasm-pack/), Node.js 8 or higher, and npm installed. Clone this repository and install its dependencies with npm:
 
-~~~sh
+```sh
 $ git clone https://github.com/SabakiHQ/deadstones
 $ cd deadstones
 $ npm install
-~~~
+```
 
 To build WASM binaries and to start tests, use the following commands:
 
-~~~
+```
 $ npm run build
 $ npm test
-~~~
+```
 
 ## API
 
@@ -53,17 +31,19 @@ The board arrangement is represented by an array of arrays. Each of those subarr
 
 #### Example
 
-~~~js
-[[ 0,  0,  1,  0, -1, -1,  1,  0, 0],
- [ 1,  0,  1, -1, -1,  1,  1,  1, 0],
- [ 0,  0,  1, -1,  0,  1, -1, -1, 0],
- [ 1,  1,  1, -1, -1, -1,  1, -1, 0],
- [ 1, -1,  1,  1, -1,  1,  1,  1, 0],
- [-1, -1, -1, -1, -1,  1,  0,  0, 0],
- [ 0, -1, -1,  0, -1,  1,  1,  1, 1],
- [ 0,  0,  0,  0,  0, -1, -1, -1, 1],
- [ 0,  0,  0,  0,  0,  0,  0, -1, 0]]
-~~~
+```js
+;[
+  [0, 0, 1, 0, -1, -1, 1, 0, 0],
+  [1, 0, 1, -1, -1, 1, 1, 1, 0],
+  [0, 0, 1, -1, 0, 1, -1, -1, 0],
+  [1, 1, 1, -1, -1, -1, 1, -1, 0],
+  [1, -1, 1, 1, -1, 1, 1, 1, 0],
+  [-1, -1, -1, -1, -1, 1, 0, 0, 0],
+  [0, -1, -1, 0, -1, 1, 1, 1, 1],
+  [0, 0, 0, 0, 0, -1, -1, -1, 1],
+  [0, 0, 0, 0, 0, 0, 0, -1, 0],
+]
+```
 
 ### Vertex
 
@@ -74,13 +54,15 @@ This module exposes four functions:
 ### `async deadstones.guess(data[, options])`
 
 - `data` - [Board data](#board-data)
-- `options` `<Object>` *(optional)*
-    - `finished` `<boolean>` *(optional)* - Default: `false`
+- `options` `<Object>` _(optional)_
 
-      If set `true`, deadstones will assume that player areas have been completely surrounded, yielding better results.
-    - `iterations` `<integer>` *(optional)* - Default: `100`
+  - `finished` `<boolean>` _(optional)_ - Default: `false`
 
-      The number of random playthroughs to make.
+    If set `true`, deadstones will assume that player areas have been completely surrounded, yielding better results.
+
+  - `iterations` `<integer>` _(optional)_ - Default: `100`
+
+    The number of random playthroughs to make.
 
 Returns an array of vertices that Sabaki thinks are dead.
 
